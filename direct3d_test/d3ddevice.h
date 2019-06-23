@@ -4,8 +4,8 @@
 class Direct3dDevice
 {
 public:
-	Direct3dDevice(HWND hwnd);
-	bool init();
+	Direct3dDevice();
+	bool init(HWND hwnd);
 	void render();
 
 private:

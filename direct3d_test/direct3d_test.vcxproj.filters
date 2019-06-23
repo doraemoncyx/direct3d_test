@@ -9,11 +9,20 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{427188db-adf4-46cd-be19-092ea6058ed5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="d3ddevice.cpp" />
-    <ClCompile Include="demoapp.cpp" />
-    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="d3ddevice.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="demoapp.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3ddevice.h">

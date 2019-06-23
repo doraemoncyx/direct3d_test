@@ -30,6 +30,7 @@ bool DemoApp::init()
 	                            tmp.hInstance, nullptr);
 	ShowWindow(m_MainWnd, SW_SHOWDEFAULT);
 	UpdateWindow(m_MainWnd);
+	m_device.init(m_MainWnd);
 	return true;
 }
 
@@ -76,6 +77,7 @@ void DemoApp::message_loop()
 			{
 				doingWork = true;
 				lastRenderCnt += perRenderCnt;
+				render(lastRenderCnt * 1.0 / cpuFreq);
 			}
 			if (!doingWork)
 			{
@@ -87,6 +89,7 @@ void DemoApp::message_loop()
 
 void DemoApp::render(double time)
 {
+	m_device.render();
 }
 
 void DemoApp::logic(double time)

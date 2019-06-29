@@ -31,17 +31,6 @@ bool Direct3dDevice::init(HWND hwnd)
 
 void Direct3dDevice::render()
 {
-	HRESULT ret;
-	ret = m_device->Clear(D3DADAPTER_DEFAULT, nullptr, D3DCLEAR_TARGET ,
-	                      D3DCOLOR_XRGB(0x22, 0x44, 0x88),
-	                      1.0, 0);
-	if(FAILED(ret))
-	{
-		return;
-	}
-	ret = m_device->BeginScene();
-	ret = m_device->EndScene();
-	ret = m_device->Present(nullptr, nullptr, nullptr, nullptr);
 }
 
 IDirect3DDevice9* Direct3dDevice::get_device()

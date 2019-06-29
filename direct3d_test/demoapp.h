@@ -29,6 +29,7 @@ private:
 	WNDCLASSEXW m_WndCls;
 	HWND m_MainWnd{};
 	Direct3dDevice m_device;
+	ComPtr<IDirect3DVertexBuffer9> g_vb;
 
 	static std::shared_ptr<DemoApp> _inst;
 	static LRESULT CALLBACK wnd_proc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);

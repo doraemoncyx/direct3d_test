@@ -31,5 +31,11 @@
     <ClInclude Include="demoapp.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="comptr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="shared_buffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

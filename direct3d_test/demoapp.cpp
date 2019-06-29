@@ -1,7 +1,19 @@
 #include "demoapp.h"
+#include <vector>
+#include "shared_buffer.h"
+using namespace std;
 shared_ptr<DemoApp> DemoApp::_inst;
 int DemoApp::logicFps = 10;
 int DemoApp::renderFps = 30;
+
+#define D3DFVF_CUSTOMVERTEX (D3DFVF_XYZRHW|D3DFVF_DIFFUSE)
+struct CUSTOMVERTEX
+{
+	FLOAT x, y, z, rhw; // The transformed position for the vertex
+	DWORD color;        // The vertex color
+};
+
+SharedBuffer<CUSTOMVERTEX> gVertex;
 
 DemoApp& DemoApp::inst()
 {
@@ -12,7 +24,7 @@ DemoApp& DemoApp::inst()
 	return *_inst;
 }
 
-bool DemoApp::init()
+bool DemoApp::init_device()
 {
 	AllocConsole();
 	FILE* fp;
@@ -31,6 +43,24 @@ bool DemoApp::init()
 	ShowWindow(m_MainWnd, SW_SHOWDEFAULT);
 	UpdateWindow(m_MainWnd);
 	m_device.init(m_MainWnd);
+
+
+	return true;
+}
+
+bool DemoApp::init_render_data()
+{
+	gVertex.reset(new vector<CUSTOMVERTEX>(3));
+	gVertex->at(0) = CUSTOMVERTEX{ 100,100,1, 1, 0xffff0000 };
+	gVertex->at(1) = CUSTOMVERTEX{ 100,200,1, 1, 0xffff0000 };
+	gVertex->at(2) = CUSTOMVERTEX{ 200,100,1, 1, 0xffff0000 };
+	auto d = m_device.get_device();
+	IDirect3DVertexBuffer9* tmp;
+	auto size = 3 * sizeof(CUSTOMVERTEX);
+	d->CreateVertexBuffer(size, 0, D3DFVF_CUSTOMVERTEX, D3DPOOL_DEFAULT, &tmp, nullptr);
+	void* gpuBuf;
+	tmp->Lock(0, sizeof(CUSTOMVERTEX) * 3, &gpuBuf, 0);
+	memcpy_s(gpuBuf, size, gVertex->data(), size);
 	return true;
 }
 

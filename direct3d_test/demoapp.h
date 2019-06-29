@@ -3,7 +3,6 @@
 #include <Windows.h>
 #include <memory>
 #include "d3ddevice.h"
-using namespace std;
 
 static const wchar_t windowClsName[] = L"demoapp";
 
@@ -16,7 +15,8 @@ public:
 	static DemoApp& inst();
 
 
-	bool init();
+	bool init_device();
+	bool init_render_data();
 	void run();
 
 
@@ -30,6 +30,6 @@ private:
 	HWND m_MainWnd{};
 	Direct3dDevice m_device;
 
-	static shared_ptr<DemoApp> _inst;
+	static std::shared_ptr<DemoApp> _inst;
 	static LRESULT CALLBACK wnd_proc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 };

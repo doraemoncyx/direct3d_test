@@ -9,8 +9,8 @@ int WINAPI WinMain(
 )
 {
 
-	auto app = DemoApp::inst();
-	auto inited = app.init();
+	auto &app = DemoApp::inst();
+	auto inited = app.init_device();
 	if(inited)
 	{
 		app.run();
